@@ -8,7 +8,6 @@ import { FaCalendarCheck, FaSuitcaseRolling } from "react-icons/fa";
 export const loader = async () => {
   try {
     const response = await customFetch.get("/users/admin/app-stats");
-    console.log(response);
     return response.data;
   } catch (error) {
     toast.error("You are not authorized to view this page");
