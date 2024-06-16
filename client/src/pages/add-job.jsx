@@ -6,19 +6,21 @@ import customFetch from "@/utils/custom-fetch.js";
 import { toast } from "react-toastify";
 import SubmitBtn from "@/components/submit-btn.jsx";
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-
-  try {
-    await customFetch.post("/jobs", data);
-    toast.success("job.jsx added successfully");
-    return redirect("all-jobs");
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return error;
-  }
-};
+export const action =
+  (queryClient) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    try {
+      await customFetch.post("/jobs", data);
+      queryClient.invalidateQueries(["jobs"]);
+      toast.success("Job added successfully ");
+      return redirect("all-jobs");
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      return error;
+    }
+  };
 
 export default function AddJob() {
   const { user } = useOutletContext() || {};
@@ -40,18 +42,18 @@ export default function AddJob() {
             defaultValue={user.location}
           />
           <FormRowSelect
-            labelText={"job status"}
-            name={"jobStatus"}
+            labelText="job status"
+            name="jobStatus"
             defaultValue={JOB_STATUS.PENDING}
             list={Object.values(JOB_STATUS)}
           />
           <FormRowSelect
-            labelText={"job type"}
-            name={"jobType"}
+            labelText="job type"
+            name="jobType"
             defaultValue={JOB_TYPE.FULL_TIME}
             list={Object.values(JOB_TYPE)}
           />
-          <SubmitBtn formBtn={true} />
+          <SubmitBtn formBtn />
         </div>
       </Form>
     </Wrapper>
