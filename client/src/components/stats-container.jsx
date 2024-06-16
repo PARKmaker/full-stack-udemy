@@ -26,6 +26,7 @@ export default function StatsContainer({ defaultStats }) {
       bcg: "#ffeeee",
     },
   ];
+
   return (
     <Wrapper>
       {stats.map((item) => {

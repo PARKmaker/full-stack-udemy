@@ -53,7 +53,7 @@ export default function AddJob() {
             defaultValue={JOB_TYPE.FULL_TIME}
             list={Object.values(JOB_TYPE)}
           />
-          <SubmitBtn formBtn />
+          <SubmitBtn formBtn={true} />
         </div>
       </Form>
     </Wrapper>

@@ -6228,6 +6228,7 @@ import { formatImage } from '../middleware/multerMiddleware.js';
 export const updateUser = async (req, res) => {
   const newUser = { ...req.body };
   delete newUser.password;
+  
   if (req.file) {
     const file = formatImage(req.file);
     const response = await cloudinary.v2.uploader.upload(file);

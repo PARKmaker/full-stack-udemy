@@ -32,7 +32,7 @@ export const loader =
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);
-
+    
     await queryClient.ensureQueryData(allJobsQuery(params));
     return { searchValues: { ...params } };
   };
