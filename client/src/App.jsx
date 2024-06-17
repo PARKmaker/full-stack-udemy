@@ -30,8 +30,8 @@ import ErrorElement from "@/components/error-element.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-if (process.env.NODE_ENV === "development") {
-  console.log("배포");
+if (import.meta.env.MODE === "development") {
+  console.log(import.meta.env.MODE);
 }
 
 export function checkDefaultTheme() {
@@ -118,7 +118,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      {process.env.NODE_ENV === "development" && (
+      {import.meta.env.MODE === "development" && (
         <ReactQueryDevtools initialIsOpen={false} />
       )}
     </QueryClientProvider>
