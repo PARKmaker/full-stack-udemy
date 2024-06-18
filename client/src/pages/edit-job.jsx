@@ -6,6 +6,7 @@ import { Form, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "@/utils/custom-fetch.js";
 import { useQuery } from "@tanstack/react-query";
+import SubmitBtn from "@/components/submit-btn.jsx";
 
 const singleJobQuery = (id) => {
   return {
